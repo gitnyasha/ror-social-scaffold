@@ -37,5 +37,6 @@
     <main class="main">
       <%= yield %>
     </main>
+    <%= debug(params) if Rails.env.development?%>
   </body>
 </html>
