@@ -35,6 +35,9 @@
       </div>
     <% end %>
     <main class="main">
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
       <%= yield %>
     </main>
     <%= debug(params) if Rails.env.development?%>
