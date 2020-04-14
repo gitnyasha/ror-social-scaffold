@@ -17,6 +17,9 @@
         <div class="menu-item">
           <%= menu_link_to 'All users', users_path %>
         </div>
+        <div class="menu-item">
+          <%= menu_link_to 'Friend Requests', friendships_path %>
+        </div>
       </div>
       <% if current_user %>
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
@@ -35,9 +38,9 @@
       </div>
     <% end %>
     <main class="main">
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
       <%= yield %>
     </main>
     <%= debug(params) if Rails.env.development?%>
