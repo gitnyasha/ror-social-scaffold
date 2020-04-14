@@ -16,7 +16,7 @@
     <% end %>
   </ul>
 </section>
-<h2>Friends</h2>
+<h2>Friends (<%= current_user.friends.count %>) </h2>
 <section class="users-section">
   <ul class="users-list">
     <% @friends.each do |friend| %>
