@@ -10,7 +10,7 @@ class FriendshipsController < ApplicationController
     return redirect_to root_path if current_user.cannot_add?(@friend)
 
     current_user.friendships.create(friend_id: @friend.id)
-    redirect_to request.referrer
+    redirect_to root_path
   end
 
   def update
@@ -21,6 +21,6 @@ class FriendshipsController < ApplicationController
     else
       @friendship.destroy
     end
-    redirect_to request.referrer
+    redirect_to root_path
   end
 end

@@ -1,41 +1,30 @@
-require "spec_helper"
-
 require "rails_helper"
 
-RSpec.describe("Friendships", type: :feature) do
-  let(:user2) { User.create(name: "user", email: "user@gmail.com", password: "123456") }
+RSpec.describe Friendship, type: :model do
+  describe "friendship" do
+    let(:user1) do
+      User.create(name: "User1",
+                  email: "user1@gmail.com",
+                  password: "123456",
+                  password_confirmation: "123456")
+    end
+    let(:user2) do
+      User.create(name: "User2",
+                  email: "user2@gmail.com",
+                  password: "123456",
+                  password_confirmation: "123456")
+    end
 
-  scenario "User approving or rejecting friend requests status" do
-    visit "/users/sign_in"
+    let(:friend_request) { Friendship.create(user_id: user1.id, friend_id: user2.id) }
 
-    enter "Email", with: user2.email
-    enter "Password", with: user2.password
-    click_button "Log in"
-    expect(find(".notice")).to(have_content("Signed in successfully."))
-    visit "/users"
-    expect(page).to(have_text("User profile"))
+    it "belongs_to user" do
+      expect(friend_request).to eq(user1.friendships.first)
+    end
   end
 
-  scenario "Current user viewing their profile" do
-    visit "/users/sign_in"
+  describe "associations" do
+    it { should belong_to(:friend).class_name("User") }
 
-    enter "Email", with: user2.email
-    enter "Password", with: user2.password
-    click_button "Log in"
-    expect(find(".notice")).to(have_content("Signed in successfully."))
-    visit "/users"
-    click_link "User Profile"
-    expect(page).to(have_text("Name:"))
-  end
-
-  scenario "friend request" do
-    user2
-    log_in(user1)
-    send_request
-    log_in(user2)
-    click_link("Friend Requests")
-    expect(page).to have_content("user1")
-    expect(page).to have_selector(:link_or_button, "Accept")
-    expect(page).to have_selector(:link_or_button, "Decline")
+    it { should belong_to(:user) }
   end
 end
