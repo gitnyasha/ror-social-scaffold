@@ -7,12 +7,14 @@ This is the final ruby on rail course for microverse. It's a web application tha
 - Ruby
 - Ruby on Rails
 
+- Live: [Demo](https://pure-sands-56444.herokuapp.com)
+
 ## Authors
 
 👤 **Marshall Chikari**
 
 - Github: [@gitnyasha](https://github.com/gitnyasha)
-- Twitter: [@marshallchkari](https://twitter.com/marshallchkari) 
+- Twitter: [@marshallchkari](https://twitter.com/marshallchkari)
 
 👤 **Miguel Dubois**
 
